@@ -26,6 +26,10 @@ jobs:
         - name: Run Microsoft Security DevOps Analysis
           uses: microsoft/security-devops-action@preview
           id: msdo
+          env:
+            terrascan_scan: 'scan'
+            terrascan_outputtype: 'sarif'
+            terrascan_iacdir: '01_Foundation'
 
         # Upload alerts to the Security tab
         - name: Upload alerts to Security tab
