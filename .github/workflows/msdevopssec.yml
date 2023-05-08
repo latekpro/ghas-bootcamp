@@ -26,13 +26,11 @@ jobs:
         - name: Run Microsoft Security DevOps Analysis
           uses: microsoft/security-devops-action@preview
           id: msdo
-          env:
-            terrascan_scan: 'scan'
-            terrascan_outputtype: 'sarif'
-            terrascan_iacdir: '01_Foundation'
+          with:
+            categories: 'IaC'
 
         # Upload alerts to the Security tab
         - name: Upload alerts to Security tab
-          uses: github/codeql-action/upload-sarif@v1
+          uses: github/codeql-action/upload-sarif@v2
           with:
             sarif_file: ${{ steps.msdo.outputs.sarifFile }}
